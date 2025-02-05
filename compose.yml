@@ -1,0 +1,14 @@
+services:
+  sf-backup:
+    build: .
+    container_name: sf-backup
+    volumes:
+      - backups:/usr/src/app/backups
+
+volumes:
+  backups:
+    driver: local
+    driver_opts:
+      type: none
+      device: C:/Users/emile.lesage/Desktop/backups
+      o: bind
