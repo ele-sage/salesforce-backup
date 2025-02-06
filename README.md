@@ -1,6 +1,6 @@
-# Lancer le conteneur Docker pour Salesforce Backup
+# Automatisation des backups Salesforce
 
-## Description du Conteneur
+## Description
 
 Le conteneur exécute une application Python qui automatise la connexion à Salesforce, détecte l'interface (Lightning ou Classic) et télécharge les fichiers de backup. Les backups sont enregistrés dans un volume bindé (ex: C:\Users\user\backups) sur votre machine locale.
 
