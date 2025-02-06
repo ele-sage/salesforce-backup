@@ -52,12 +52,15 @@ class BackupController:
         
         extract_file_name = re.search(r'fileName=(.*?)&id',link)
         file_name= extract_file_name.group(1)
-        link = f'{self.org_domain}{link}'
+        link = os.path.join(self.org_domain,link)
+        print(f'Link: {link}')
         return link,file_name
 
     def download(self, download_url, file_name, cookies):
-        os.makedirs(BACKUP_DIR, exist_ok=True)
-        target_path = os.path.join(BACKUP_DIR, file_name)
+        today = time.strftime('%Y-%m-%d')
+        backup_dir = os.path.join(BACKUP_DIR, today)
+        os.makedirs(backup_dir, exist_ok=True)
+        target_path = os.path.join(backup_dir, file_name)
         
         print(f'Downloading {file_name}')
         with requests.get(download_url, cookies=cookies, stream=True) as r:
