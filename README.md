@@ -1,9 +1,15 @@
 # Lancer le conteneur Docker pour Salesforce Backup
 
+## Description du Conteneur
+
+Le conteneur exécute une application Python qui automatise la connexion à Salesforce, détecte l'interface (Lightning ou Classic) et télécharge les fichiers de backup. Les backups sont enregistrés dans un volume bindé (ex: C:\Users\user\backups) sur votre machine locale.
+
 ## Prérequis
 - Docker et Docker Compose installés.
 - Un dossier local pour stocker les backups. ex: `C:\Users\user\backups`
 - Un compte Salesforce avec les permissions nécessaires pour effectuer des backups.
+
+## 
 
 ## Étapes
 
@@ -16,12 +22,17 @@
             driver: local
             driver_opts:
             type: none
-            device: C:\Users\user\backups
+            device: /path/to/your/backups
             o: bind
    ```
 
 2. **Créer un fichier .env :**  
    Créez un fichier `.env` à la racine du projet (`/salesforce-backup/.env`) pour définir les variables d'environnement nécessaire pour la conexion à Salesforce.
+
+   Le fichier `.env` doit contenir les variables suivantes :
+    - `SF_USERNAME` : Nom d'utilisateur Salesforce.
+    - `SF_PASSWORD` : Mot de passe Salesforce.
+    - `SF_DOMAIN` : Domaine Salesforce.
 
    Exemple de contenu du fichier `.env` :
    ```
